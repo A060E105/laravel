@@ -22,12 +22,14 @@ Route::get('hello', function () {
     // return 'Hello World';
 });
 
+Route::get('hi/{name}', function($name) {
+    return '<h1>hi, ' . $name . '</h1>';
+});
+
+Route::get('user/{name?}', function($name = 'john') {
+    return '<h1>你是' . $name . '</h1>';
+});
+
 Route::get('user/{id}/profile', function ($id = '1234') {
     return 'your id is ' . $id;
 })->name('profile');
-
-// $url = route('profile', ['id' => 1]);
-
-Route::get('nameRoute', function () {
-    return redirect()->route('profile');
-});

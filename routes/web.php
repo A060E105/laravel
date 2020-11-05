@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+    // return view('greeting', ['name' => 'James']);
 });
 
 Route::get('hello', function () {
@@ -27,9 +29,23 @@ Route::get('hi/{name}', function($name) {
 });
 
 Route::get('user/{name?}', function($name = 'john') {
-    return '<h1>你是' . $name . '</h1>';
+    // return '<h1>你是' . $name . '</h1>';
+    return view('greeting', ['name' => $name]);
 });
 
-Route::get('user/{id}/profile', function ($id = '1234') {
-    return 'your id is ' . $id;
-})->name('profile');
+Route::post('profile', function(Request $req) {
+    return $req->all();
+});
+
+Route::get('hellopage', function($name = 'john') {
+    // return 'Hello, ' . $_GET['name'];
+    return view('greeting');
+});
+
+Route::get('home', function() {
+    return view('child');
+});
+
+Route::get('alert', function() {
+    return view('alert');
+});
